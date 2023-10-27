@@ -1,0 +1,9 @@
+.next
+node_modules
+package.json
+img
+.env
+.*
+README.md
+build
+coverage

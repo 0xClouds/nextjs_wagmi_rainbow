@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Mulish&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#__next {
+    height: 100%;
+    width: 100%;
+    font-family: 'Mulish', sans-serif;
+}
+
+::selection {
+    background: red;
+}
