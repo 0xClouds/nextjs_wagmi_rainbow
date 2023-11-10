@@ -11,21 +11,41 @@ type DropdownProp = {
 export const MobileHeader = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     return (
-        <div className="h-20 border-solid border-b border-gray-100 flex justify-between items-center">
-            <div className="w-32 relative">
-                <Image
-                    src=""
-                    width={488}
-                    height={128}
-                    alt="Matter logo"
-                    className="object-contain"
-                    priority={true}
-                ></Image>
+        <div className="w-full flex flex-col hidde">
+            <div
+                className={` h-20 border-solid border-b flex justify-between items-center px-2 ${
+                    isMenuOpen ? 'bg-[#121212] border-black' : 'bg-white'
+                }`}
+            >
+                <div className="w-24 relative ">
+                    <Image
+                        src="/logo"
+                        width={342}
+                        height={132}
+                        alt="UPLOAD LOGO HERE"
+                        className="object-contain"
+                        priority={true}
+                    ></Image>
+                </div>
+                <div className="mr-4 flex items-center gap-3">
+                    <ConnectButton label="login"></ConnectButton>
+                    <span
+                        className={`material-symbols-outlined ${
+                            isMenuOpen ? 'text-white' : 'text-black'
+                        }`}
+                    >
+                        search
+                    </span>
+                    <Hamburger
+                        setIsMenuOpen={setIsMenuOpen}
+                        isMenuOpen={isMenuOpen}
+                    ></Hamburger>
+                </div>
             </div>
-            <div className="mr-4">
-                <Hamburger setIsMenuOpen={setIsMenuOpen}></Hamburger>
+
+            <div className="w-full">
+                <DropdownMenu isMenuOpen={isMenuOpen}></DropdownMenu>
             </div>
-            <DropdownMenu isMenuOpen={isMenuOpen}></DropdownMenu>
         </div>
     )
 }
@@ -33,11 +53,38 @@ export const MobileHeader = () => {
 const DropdownMenu = ({ isMenuOpen }: DropdownProp) => {
     return (
         <div
-            className={`w-screen h-screen  absolute top-20 bg-red-600 ${
-                isMenuOpen ? 'block animate-dropdownMenu' : 'hidden'
-            }`}
+            className={`w-full h-screen bg-[#252525] text-white flex flex-col overflow-hidden ${
+                isMenuOpen
+                    ? 'animate-dropdownMenuIn'
+                    : 'animate-dropdownMenuOut hidden'
+            } `}
         >
-            <ConnectButton></ConnectButton>
+            <ul className="text-lg mt-4 my-2 w-full px-2">
+                <li className="py-4">
+                    <div className="flex justify-between items-center">
+                        <button>Projects</button>
+                        <span className="material-symbols-outlined">
+                            chevron_right
+                        </span>
+                    </div>
+                </li>
+                <li className="py-4">
+                    <div className="flex justify-between items-center ">
+                        <button>Explore</button>
+                        <span className="material-symbols-outlined">
+                            chevron_right
+                        </span>
+                    </div>
+                </li>
+                <li className="py-4">
+                    <div className="flex justify-between items-center ">
+                        <button>Resources</button>
+                        <span className="material-symbols-outlined">
+                            chevron_right
+                        </span>
+                    </div>
+                </li>
+            </ul>
         </div>
     )
 }
